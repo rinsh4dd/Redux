@@ -1,39 +1,42 @@
+
+
 const redux = require("redux");
+
 const createStore = redux.createStore;
+const BUY_CAR = "BUY_CAR";
 
-const BUY_CAKE = "BUY_CAKE";
-
-function buyCake() {
+function buycar() {
   return {
-    type: BUY_CAKE,
-    info: "1st redux action",
+    type: "BUY_CAR",
+    info: "First Reduc Action",
   };
 }
 
-//(pervState,action)=>newState
 const initialState = {
-  numOfCakes: 20,
+  numberOfCars: 20,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case BUY_CAKE:
+    case BUY_CAR:
       return {
         ...state,
-        numOfCakes: state.numOfCakes - 1,
+        numberOfCars: state.numberOfCars - 1,
       };
-    default:
+    default: {
       return state;
+    }
   }
 };
 
-const strore = createStore(reducer);
-console.log("initialState",strore.getState())
-strore.subscribe(()=>{
-    console.log("updated state",strore.getState())
-})
-strore.dispatch(buyCake())
-strore.dispatch(buyCake())
-strore.dispatch(buyCake())
-strore.dispatch(buyCake())
- 
+const store = createStore(reducer);
+console.log("initial value :", store.getState());
+
+const unsubscribe = store.subscribe(() => {
+  console.log("updated Store :", store.getState());
+});
+ store.dispatch(buycar())
+ store.dispatch(buycar())
+ store.dispatch(buycar())
+ store.dispatch(buycar())
+ store.dispatch(buycar())
