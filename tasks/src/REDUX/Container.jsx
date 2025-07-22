@@ -19,7 +19,6 @@ const mapStateToProps = (state) => {
 
 const mapStateToDispatch = (dispatch) => {
     return{
-
         buyCake: () => dispatch(buyCake())
     }
 };
